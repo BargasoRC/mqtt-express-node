@@ -1,0 +1,400 @@
+<html>
+
+<head>
+  <title>mows</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<style>
+  body {
+    background: #d5dade;
+    margin-top:0px;
+  }
+
+  #header {
+    background-color: #046ad1;
+    margin-bottom: 10px;
+    font-family: Impact, Charcoal, sans-serif;
+    color: white;
+    box-shadow: 1px 0px 2px blue;
+    padding:10px;
+    padding-bottom:5px;
+  }
+
+  #broker {
+    background-color: azure;
+    margin-bottom: 10px;
+  }
+
+  #brokerHeader {
+    background-color: #22a0e3;
+  }
+
+  h5 {
+    color: white;
+  }
+
+  h6 {
+    margin-top: 10px;
+  }
+
+  h1 {
+    background: #046ad1;
+    border: 1px solid white;
+    text-align: center;
+    
+  }
+
+  input {
+    background-color: none;
+    border: none;
+    border-bottom: 1px solid black;
+    width: 100%;
+    margin-bottom: 10px;
+    height: 40px;
+  }
+
+  #status {
+    background: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    font-style: italic;
+  }
+
+  .connect {
+    background-color: azure;
+    margin-bottom: 10px;
+    padding-bottom: 15px;
+    box-shadow: 0px 0px 2px navy;
+    border-radius: 5px;
+  }
+
+  #message {
+    background-color: azure;
+    height: 400px;
+    margin-bottom: 10px;
+  }
+
+  .overflow-auto {
+    min-height: 200px;
+  }
+
+  #message::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+  }
+
+  #message::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: linear-gradient(left, #fff, #e4e4e4);
+    border: 1px solid #aaa;
+  }
+
+  #message::-webkit-scrollbar-thumb:hover {
+    background: #fff;
+  }
+
+  #message::-webkit-scrollbar-thumb:active {
+    background: linear-gradient(left, #22ADD4, #1E98BA);
+  }
+
+  #message::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5;
+  }
+
+  .divHeader {
+    background-color: #22a0e3;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+  }
+
+  ::-webkit-input-placeholder {
+    font-style: italic;
+  }
+
+  :-moz-placeholder {
+    font-style: italic;
+  }
+
+  ::-moz-placeholder {
+    font-style: italic;
+  }
+
+  :-ms-input-placeholder {
+    font-style: italic;
+  }
+
+  button {
+    width: 130px;
+    height: 40px;
+  }
+
+  button:hover {
+    font-size: 18px;
+    color: white;
+    animation: circle;
+    box-shadow: 0px 0px 5px green;
+  }
+
+  .table {
+    font-size: 11px;
+    width: 100%;
+  }
+
+  .thTopic {
+    width: 20%;
+  }
+
+  .thPayload {
+    width: 20%;
+  }
+
+  .thTimeStamp {
+    width: 60%;
+  }
+
+  #thSPayload {
+    width: 40%;
+  }
+
+  #thSTimeStamp {
+    width: 60%;
+  }
+
+  #publishHistoryBtn {
+    box-shadow: none;
+    margin-left: 5px;
+    margin-bottom: 0px;
+    width: 200px;
+    height: 50px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background: white;
+    box-shadow: 0px 0px 5px 0px white;
+  }
+
+  #subscribeHistoryBtn {
+    box-shadow: none;
+    width: 200px;
+    height: 50px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background: #22a0e3;
+  }
+
+  #historyHeader {
+    padding-top: 7px;
+    background: #22a0e3;
+  }
+
+  #subscribeHistoryBtn:hover {
+    color: black;
+  }
+
+  #publishHistoryBtn:hover {
+    color: black;
+  }
+
+  #publishHistory {
+    height: 300px;
+    /* display:inline; */
+  }
+
+  #publishHistory::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+  }
+
+  #publishHistory::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: linear-gradient(left, #fff, #e4e4e4);
+    border: 1px solid #aaa;
+  }
+
+  #publishHistory::-webkit-scrollbar-thumb:hover {
+    background: #fff;
+  }
+
+  #publishHistory::-webkit-scrollbar-thumb:active {
+    background: linear-gradient(left, #22ADD4, #1E98BA);
+  }
+
+  #publishHistory::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5;
+  }
+
+  #subscribeHistory {
+    height: 300px;
+  }
+
+  #subscribeHistory::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+  }
+
+  #subscribeHistory::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: linear-gradient(left, #fff, #e4e4e4);
+    border: 1px solid #aaa;
+  }
+
+  #subscribeHistory::-webkit-scrollbar-thumb:hover {
+    background: #fff;
+  }
+
+  #subscribeHistory::-webkit-scrollbar-thumb:active {
+    background: linear-gradient(left, #22ADD4, #1E98BA);
+  }
+
+  #subscribeHistory::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5;
+  }
+
+  .container {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+</style>
+
+<body>
+  <div id="header" class="col-md-12">
+    <center>
+      <h1>MQTT over Web Socket</h1>
+    </center>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row">
+          <div class="connect col-md-12">
+            <div class="row">
+              <div id="brokerHeader" class="divHeader col-md-12">
+                <h5>Broker</h5>
+              </div>
+            </div>
+            <br>
+            <h6>Address:</h6>
+            <input id="address" type="text" placeholder="Broker Address" value="wss://test.mosquitto.org:8081/mqtt">
+            <button id="btnConnect" class="btn btn-success bmd-btn-fab" type="button" name="connect">Connect</button>
+            <button id="btnDisconnect" class="btn btn-danger bmd-btn-fab" type="button"
+              name="Disconnect">Disconnect</button>
+            <h6>Status:</h6>
+            <p id="status">Status!</p>
+          </div>
+          <div class="connect col-md-12">
+            <div class="row">
+              <div class="divHeader col-md-12">
+                <h5>Publish</h5>
+              </div>
+            </div>
+            <br>
+            <h6>Topic:</h6>
+            <input id="publishTopic" type="text" placeholder="Publish Topic">
+            <h6>Payload:</h6>
+            <input id="payload" type="text" placeholder="Message">
+            <button id="btnPublish" class="btn btn-primary bmd-btn-fab" type="button" name="publish">Publish</button>
+          </div>
+          <div class="connect col-md-12">
+            <div class="row">
+              <div class="divHeader col-md-12">
+                <h5>Subscribe</h5>
+              </div>
+            </div>
+            <br>
+            <h6>Topic:</h6>
+            <input id="subscribeTopic" type="text" placeholder="Subscribe Topic">
+            <button id="btnSubscribe" class="btn btn-success bmd-btn-fab" type="button"
+              name="subscribe">Subscribe</button>
+            <button id="btnUnsubscribe" class="btn btn-danger bmd-btn-fab" type="button"
+              name="unsubscribe">Unsubscribe</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="divHeader">
+              <h5>&nbsp;&nbsp;&nbsp;Incoming messages</h5>
+            </div>
+            <div id="message" class="overflow-auto">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th class="thTopic" scope="col">Topic</th>
+                    <th class="thPayload" scope="col">Payload</th>
+                    <th class="thTimeStamp" scope="col">Time Stamp</th>
+                  </tr>
+                </thead>
+                <tbody id='tablebody'>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <ul class="nav nav-tabs">
+              <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#pubHistory"><b>Publish History</b></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#subsHistory"><b>Subscribe History</b></a>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane container active" id="pubHistory">
+                <div class="col-md-12 overflow-auto" id="publishHistory">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th class="thTopic" scope="col">Topic</th>
+                        <th class="thPayload" scope="col">Payload</th>
+                        <th class="thTimeStamp" scope="col">Time Stamp</th>
+                      </tr>
+                    </thead>
+                    <tbody id='publishHistoryTablebody'>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="tab-pane container fade" id="subsHistory">
+                <div class="col-md-12 overflow-auto" id="subscribeHistory">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th id="thSTopic" scope="col">Subscribed Topic</th>
+                        <th id="thSTimeStamp" scope="col">Time Stamp</th>
+                      </tr>
+                    </thead>
+                    <tbody id='subscribeHistoryTablebody'>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+<script src="scripts/browserMqtt.js"></script>
+<script src="scripts/controller.js"></script>
+
+</html>

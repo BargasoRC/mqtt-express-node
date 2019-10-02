@@ -1,0 +1,26 @@
+{
+  "name": "mqtt-express-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/futureCode16/mqtt-express-node.git"
+  },
+  "keywords": [
+    "heroku",
+    "mqtt-node-express"
+  ],
+  "author": "Renan Bargaso",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/futureCode16/mqtt-express-node/issues"
+  },
+  "homepage": "https://github.com/futureCode16/mqtt-express-node#readme",
+  "engines": {
+    "node": "v10.16.3"
+  }
+}
